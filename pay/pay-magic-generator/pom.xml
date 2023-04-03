@@ -22,20 +22,45 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+
+		<!-- 以spring-boot-starter的方式引用 -->
+		<dependency>
+			<groupId>org.ssssssss</groupId>
+			<artifactId>magic-api-spring-boot-starter</artifactId>
+			<version>2.0.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.ssssssss</groupId>
+			<artifactId>magic-api-plugin-swagger</artifactId>
+			<version>2.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
-		<finalName>${project.artifactId}</finalName>
-<!--		<resources>-->
-<!--			<resource>-->
-<!--				<directory>src/main/resources</directory>-->
-<!--				<filtering>true</filtering>-->
-<!--				<excludes>-->
-<!--					<exclude>application.properties</exclude>-->
-<!--					<exclude>application-druid.yml</exclude>-->
-<!--				</excludes>-->
-<!--			</resource>-->
-<!--		</resources>-->
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -50,6 +75,8 @@
 				</executions>
 				<configuration>
 					<includeSystemScope>true</includeSystemScope>
+					<mainClass>com.ibeyoung.pay.magic.generator.PayMagicGeneratorApplication</mainClass>
+					<finalName>pay-magic-generator</finalName>
 				</configuration>
 			</plugin>
 		</plugins>
