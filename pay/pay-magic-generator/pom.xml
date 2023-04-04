@@ -23,19 +23,6 @@
 			<scope>test</scope>
 		</dependency>
 
-
-		<!-- 以spring-boot-starter的方式引用 -->
-		<dependency>
-			<groupId>org.ssssssss</groupId>
-			<artifactId>magic-api-spring-boot-starter</artifactId>
-			<version>2.0.2</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.ssssssss</groupId>
-			<artifactId>magic-api-plugin-swagger</artifactId>
-			<version>2.0.2</version>
-		</dependency>
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
@@ -56,7 +43,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>com.hynnet</groupId>
+			<artifactId>oracle-driver-ojdbc6</artifactId>
+			<version>12.1.0.1</version>
+		</dependency>
 
 	</dependencies>
 
