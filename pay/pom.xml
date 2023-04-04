@@ -13,7 +13,8 @@
 
 	<modules>
 		<module>pay-magic-generator</module>
-	</modules>
+        <module>h2h-simu</module>
+    </modules>
 
 	<properties>
 		<java.version>8</java.version>
