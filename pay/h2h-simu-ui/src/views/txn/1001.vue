@@ -1,6 +1,6 @@
 /**
- * 基础菜单 商品管理
- */
+* 基础菜单 商品管理
+*/
 <template>
   <div>
     <!-- 面包屑导航 -->
@@ -8,48 +8,242 @@
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>出票登记</el-breadcrumb-item>
     </el-breadcrumb>
+
+
+    <el-row style="margin-top:20px">
+      <el-col :span="8">
+        <el-card>
+          <div slot="header" class="clearfix">
+            <span>出票人信息</span>
+            <el-button style="float: right; padding: 3px 0" type="text" @click="handleEdit()">使用模板</el-button>
+          </div>
+          <!-- 出票人表单 -->
+          <el-form :model="remitterForm" label-width="100px">
+            <el-form-item label="企业编号：">
+              <el-input size="small"></el-input>
+            </el-form-item>
+            <el-form-item label="用户编号：">
+              <el-input size="small"></el-input>
+            </el-form-item>
+            <el-form-item label="出票人账号：">
+              <el-input size="small"></el-input>
+            </el-form-item>
+          </el-form>
+        </el-card>
+      </el-col>
+
+      <el-col :span="8">
+        <el-card>
+          <div slot="header" class="clearfix">
+            <span>承兑人信息</span>
+            <el-button style="float: right; padding: 3px 0" type="text" @click="handleEdit()">使用模板</el-button>
+          </div>
+          <!-- 承兑人表单 -->
+          <el-form :model="acceptorForm" label-width="150px">
+            <el-form-item label="承兑人名称：">
+              <el-input size="small"></el-input>
+            </el-form-item>
+            <el-form-item label="社会信用代码：">
+              <el-input size="small"></el-input>
+            </el-form-item>
+            <el-form-item label="承兑人账号：">
+              <el-input size="small"></el-input>
+            </el-form-item>
+            <el-form-item label="承兑人账户名称：">
+              <el-input size="small"></el-input>
+            </el-form-item>
+            <el-form-item label="承兑人行号：">
+              <el-input size="small"></el-input>
+            </el-form-item>
+          </el-form>
+        </el-card>
+      </el-col>
+
+
+      <el-col :span="8">
+        <el-card>
+          <div slot="header" class="clearfix">
+            <span>收款人信息</span>
+            <el-button style="float: right; padding: 3px 0" type="text" @click="handleEdit()">使用模板</el-button>
+          </div>
+          <!-- 收款人表单 -->
+          <el-form :model="payeeForm" label-width="150px">
+
+            <el-form-item label="收款人名称：">
+              <el-input size="small"></el-input>
+            </el-form-item>
+            <el-form-item label="社会信用代码：">
+              <el-input size="small"></el-input>
+            </el-form-item>
+            <el-form-item label="收款人账户：">
+              <el-input size="small"></el-input>
+            </el-form-item>
+            <el-form-item label="收款人账户名称：">
+              <el-input size="small"></el-input>
+            </el-form-item>
+            <el-form-item label="收款人行号：">
+              <el-input size="small"></el-input>
+            </el-form-item>
+          </el-form>
+        </el-card>
+      </el-col>
+    </el-row>
+
+
+    <el-row>
+      <el-col :span="24">
+        <el-card>
+          <div slot="header" class="clearfix">
+            <span>出票登记信息</span>
+          </div>
+          <!-- 出票登记信息 -->
+          <el-form :model="applyForm" label-width="120px" >
+            <el-row>
+              <el-col :span="4">
+                <el-form-item label="出票类型：">
+                  <el-select v-model="value" placeholder="请选择">
+                    <el-option
+                      v-for="item in issueTypes"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+                      <span style="float: left">{{ item.label }}</span>
+                      <span style="float: right; color: #8492a6; font-size: 13px">{{ item.value }}</span>
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+
+              <el-col :span="4">
+                <el-form-item label="交易票据类型：" >
+                  <el-select v-model="value" placeholder="请选择">
+                    <el-option
+                      v-for="item in draftBusiTypes"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+                      <span style="float: left">{{ item.label }}</span>
+                      <span style="float: right; color: #8492a6; font-size: 13px">{{ item.value }}</span>
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="4">
+                <el-form-item label="是否可拆分：" >
+                  <el-select v-model="value" placeholder="请选择">
+                    <el-option
+                      v-for="item in cdSplits"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+                      <span style="float: left">{{ item.label }}</span>
+                      <span style="float: right; color: #8492a6; font-size: 13px">{{ item.value }}</span>
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="4">
+                <el-form-item label="票据类型：" >
+                  <el-select v-model="value" placeholder="请选择">
+                    <el-option
+                      v-for="item in draftTypes"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+                      <span style="float: left">{{ item.label }}</span>
+                      <span style="float: right; color: #8492a6; font-size: 13px">{{ item.value }}</span>
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="4">
+                <el-form-item label="不得转让标记：">
+                  <el-select v-model="value" placeholder="请选择">
+                    <el-option
+                      v-for="item in transFlags"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+                      <span style="float: left">{{ item.label }}</span>
+                      <span style="float: right; color: #8492a6; font-size: 13px">{{ item.value }}</span>
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+            </el-row>
+
+            <el-row>
+              <el-col :span="4">
+                <el-form-item label="流水号：" >
+                  <el-input size="small"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="4">
+                <el-form-item label="票据金额：" >
+                  <el-input size="small"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="4">
+                <el-form-item label="出票日：" >
+                  <el-input size="small"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="4">
+                <el-form-item label="到期日：" >
+                  <el-input size="small"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="4">
+                <el-form-item label="交易类型：">
+                  <el-input size="small"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="4">
+                <el-form-item label="备注：">
+                  <el-input size="small"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+
+
+
+
+
+
+
+            <el-form-item label="信用等级：">
+              <el-input size="small"></el-input>
+            </el-form-item>
+            <el-form-item label="评级机构：">
+              <el-input size="small"></el-input>
+            </el-form-item>
+            <el-form-item label="评级到期日：">
+              <el-input size="small"></el-input>
+            </el-form-item>
+            <el-form-item label="合同编号：">
+              <el-input size="small"></el-input>
+            </el-form-item>
+          </el-form>
+        </el-card>
+      </el-col>
+    </el-row>
+
+
     <!-- 搜索筛选 -->
     <el-form :inline="true" :model="formInline" class="user-search">
-      <el-form-item label="搜索：">
-        <el-input size="small" v-model="formInline.deptName" placeholder="输入部门名称"></el-input>
-      </el-form-item>
-      <el-form-item label="">
-        <el-input size="small" v-model="formInline.deptNo" placeholder="输入部门代码"></el-input>
-      </el-form-item>
       <el-form-item>
-        <el-button size="small" type="primary" icon="el-icon-search" @click="search">搜索</el-button>
-        <el-button size="small" type="primary" icon="el-icon-plus" @click="handleEdit()">添加</el-button>
+        <el-button size="small" type="primary" icon="el-icon-search" @click="search">重置</el-button>
+        <el-button size="small" type="primary" icon="el-icon-plus" @click="handleEdit()">发送</el-button>
       </el-form-item>
     </el-form>
-    <!--列表-->
-    <el-table size="small" :data="listData" highlight-current-row v-loading="loading" border element-loading-text="拼命加载中" style="width: 100%;">
-      <el-table-column align="center" type="selection" width="60">
-      </el-table-column>
-      <el-table-column sortable prop="deptName" label="部门名称" width="300">
-      </el-table-column>
-      <el-table-column sortable prop="deptNo" label="部门代码" width="300">
-      </el-table-column>
-      <el-table-column sortable prop="editTime" label="修改时间" width="300">
-        <template slot-scope="scope">
-          <div>{{scope.row.editTime|timestampToTime}}</div>
-        </template>
-      </el-table-column>
-      <el-table-column sortable prop="editUser" label="修改人" width="300">
-      </el-table-column>
-      <el-table-column align="center" label="操作" min-width="300">
-        <template slot-scope="scope">
-          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-          <el-button size="mini" type="danger" @click="deleteUser(scope.$index, scope.row)">删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-    <!-- 分页组件 -->
-    <Pagination v-bind:child-msg="pageparm" @callFather="callFather"></Pagination>
+
+
     <!-- 编辑界面 -->
     <el-dialog :title="title" :visible.sync="editFormVisible" width="30%" @click="closeDialog">
       <el-form label-width="120px" :model="editForm" :rules="rules" ref="editForm">
         <el-form-item label="部门名称" prop="deptName">
-          <el-input size="small" v-model="editForm.deptName" auto-complete="off" placeholder="请输入部门名称"></el-input>
+          <el-input size="small" v-model="editForm.deptName" auto-complete="off"
+                    placeholder="请输入部门名称"></el-input>
         </el-form-item>
         <el-form-item label="部门代码" prop="deptNo">
           <el-input size="small" v-model="editForm.deptNo" auto-complete="off" placeholder="请输入部门代码"></el-input>
@@ -57,20 +251,20 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button size="small" @click="closeDialog">取消</el-button>
-        <el-button size="small" type="primary" :loading="loading" class="title" @click="submitForm('editForm')">保存</el-button>
+        <el-button size="small" type="primary" :loading="loading" class="title" @click="submitForm('editForm')">保存
+        </el-button>
       </div>
     </el-dialog>
   </div>
 </template>
 
 <script>
-import { deptList, deptSave, deptDelete } from '../../api/userMG'
+import {deptList, deptSave, deptDelete} from '../../api/userMG'
 import Pagination from '../../components/Pagination'
+
 export default {
   data() {
     return {
-      nshow: true, //switch开启
-      fshow: false, //switch关闭
       loading: false, //是显示加载
       editFormVisible: false, //控制编辑页面显示与隐藏
       title: '添加',
@@ -83,9 +277,9 @@ export default {
       // rules表单验证
       rules: {
         deptName: [
-          { required: true, message: '请输入部门名称', trigger: 'blur' }
+          {required: true, message: '请输入部门名称', trigger: 'blur'}
         ],
-        deptNo: [{ required: true, message: '请输入部门代码', trigger: 'blur' }]
+        deptNo: [{required: true, message: '请输入部门代码', trigger: 'blur'}]
       },
       formInline: {
         page: 1,
@@ -94,6 +288,13 @@ export default {
         varName: '',
         token: localStorage.getItem('logintoken')
       },
+      //出票人表单
+      remitterForm:{},
+      //承兑人表单
+      acceptorForm:{},
+      //收款人表单
+      payeeForm:{},
+      applyForm: {},
       // 删除部门
       seletedata: {
         ids: '',
@@ -106,7 +307,50 @@ export default {
         currentPage: 1,
         pageSize: 10,
         total: 10
-      }
+      },
+      //交易票据类型 draftBusiType
+      draftBusiTypes:[{
+        value: 'ECDS',
+        label: '普票'
+      },{
+        value: 'CPES',
+        label: '定额票据'
+      }],
+      //是否可拆分选择器
+      cdSplits:[{
+        value: '0',
+        label: '不可拆分'
+      },{
+        value: '1',
+        label: '可拆分'
+      }],
+      //出票类型选择器
+      issueTypes:[{
+        value: '00',
+        label: '出票登记'
+      },{
+        value: '01',
+        label: '一键两功能'
+      },{
+        value: '02',
+        label: '一键三功能'
+      }],
+      //票据类型选择器
+      draftTypes:[{
+        value: 'AC01',
+        label: '银票'
+      },{
+        value: 'AC02',
+        label: '商票'
+      }],
+      //不得转让标记
+      transFlags:[{
+        value: 'EM00',
+        label: '可再转让'
+      },{
+        value: 'EM01',
+        label: '不得转让'
+      }]
     }
   },
   // 注册组件
@@ -231,7 +475,7 @@ export default {
       this.getdata(this.formInline)
     },
     //显示编辑界面
-    handleEdit: function(index, row) {
+    handleEdit: function (index, row) {
       this.editFormVisible = true
       if (row != undefined && row != 'undefined') {
         this.title = '修改'
@@ -323,9 +567,12 @@ export default {
 .user-search {
   margin-top: 20px;
 }
+
 .userRole {
   width: 100%;
 }
+
+
 </style>
 
 
