@@ -12,7 +12,6 @@
 
 
 	<modules>
-		<module>pay-magic-generator</module>
         <module>h2h-simu</module>
     </modules>
 
