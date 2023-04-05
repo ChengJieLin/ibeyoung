@@ -74,7 +74,7 @@ export default {
             //开始登录
             this.$store.commit('login', 'true')
             //跳转主页
-            this.$router.push({ path: '/goods/Goods' })
+            this.$router.push({ path: '/txn/1001' })
           }, 1000)
         } else {
           this.$message.error('请输入用户名密码！')
