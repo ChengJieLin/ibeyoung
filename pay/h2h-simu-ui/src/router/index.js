@@ -53,7 +53,7 @@ import statistics from '@/views/charts/statistics';
 // 启用路由
 Vue.use(Router);
 
-// 导出路由 
+// 导出路由
 export default new Router({
     routes: [{
         path: '/',
@@ -77,6 +77,177 @@ export default new Router({
         component: index,
         iconCls: 'el-icon-tickets',
         children: [{
+          path: '/txn/1001',
+          name: '商品管理',
+          component: () => import('@/views/txn/1001.vue'),
+          meta: {
+            requireAuth: true
+          }
+        },{
+          path: '/txn/1002',
+          name: '提示承兑',
+          component: () => import('@/views/txn/1002.vue'),
+          meta: {
+            requireAuth: true
+          }
+        },
+
+
+        {
+          path: '/txn/1003',
+          name: '提示收票',
+          component: () => import('@/views/txn/1003.vue'),
+          meta: {
+            requireAuth: true
+          }
+        },
+
+          {
+            path: '/txn/2001',
+            name: '背书转让',
+            component: () => import('@/views/txn/2001.vue'),
+            meta: {
+              requireAuth: true
+            }
+          },
+          {
+            path: '/txn/2002',
+            name: '贴现转让',
+            component: () => import('@/views/txn/2002.vue'),
+            meta: {
+              requireAuth: true
+            }
+          },
+          {
+            path: '/txn/2003',
+            name: '质押转让',
+            component: () => import('@/views/txn/2003.vue'),
+            meta: {
+              requireAuth: true
+            }
+          },
+
+
+          {
+            path: '/txn/3001',
+            name: '提示付款',
+            component: () => import('@/views/txn/3001.vue'),
+            meta: {
+              requireAuth: true
+            }
+          },
+          {
+            path: '/txn/3002',
+            name: '逾期提示付款',
+            component: () => import('@/views/txn/3002.vue'),
+            meta: {
+              requireAuth: true
+            }
+          },
+
+
+          {
+            path: '/txn/4001',
+            name: '通用签收',
+            component: () => import('@/views/txn/4001.vue'),
+            meta: {
+              requireAuth: true
+            }
+          },
+          {
+            path: '/txn/4002',
+            name: '通用撤回',
+            component: () => import('@/views/txn/4002.vue'),
+            meta: {
+              requireAuth: true
+            }
+          },
+          {
+            path: '/txn/4003',
+            name: '未用退回',
+            component: () => import('@/views/txn/4003.vue'),
+            meta: {
+              requireAuth: true
+            }
+          },
+
+
+          {
+            path: '/txn/5001',
+            name: '可操作票据查询',
+            component: () => import('@/views/txn/5001.vue'),
+            meta: {
+              requireAuth: true
+            }
+          },
+          {
+            path: '/txn/5002',
+            name: '待签收交易状态查询',
+            component: () => import('@/views/txn/5002.vue'),
+            meta: {
+              requireAuth: true
+            }
+          },
+          {
+            path: '/txn/5003',
+            name: '票据状态查询',
+            component: () => import('@/views/txn/5003.vue'),
+            meta: {
+              requireAuth: true
+            }
+          },{
+            path: '/txn/5004',
+            name: '票据操作结果查询',
+            component: () => import('@/views/txn/5004.vue'),
+            meta: {
+              requireAuth: true
+            }
+          },
+          {
+            path: '/txn/5005',
+            name: '票据操作结果查询(批量)',
+            component: () => import('@/views/txn/5005.vue'),
+            meta: {
+              requireAuth: true
+            }
+          },
+          {
+            path: '/txn/5006',
+            name: '行名行号增量查询',
+            component: () => import('@/views/txn/5006.vue'),
+            meta: {
+              requireAuth: true
+            }
+          },
+
+
+          {
+            path: '/txn/6001',
+            name: '服务检查',
+            component: () => import('@/views/txn/6001.vue'),
+            meta: {
+              requireAuth: true
+            }
+          },
+          {
+            path: '/txn/6002',
+            name: '自由格式',
+            component: () => import('@/views/txn/6002.vue'),
+            meta: {
+              requireAuth: true
+            }
+          },
+          {
+            path: '/txn/6003',
+            name: '参数设置',
+            component: () => import('@/views/txn/6003.vue'),
+            meta: {
+              requireAuth: true
+            }
+          },
+
+
+          {
             path: '/goods/Goods',
             name: '商品管理',
             component: Goods,
